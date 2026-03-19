@@ -37,12 +37,16 @@ public class StudentView {
                 case 5 :
                     deleteStudentUI();
                     break;
-                case 6 :
+                case 6:
+                    searchStudentsUI();
+                    break;
+                case 7 :
                     exit(0);
                 default:
                     break;
             }
         }
+
     }
 
     private int choices(){
@@ -53,9 +57,11 @@ public class StudentView {
                 3.查询所有学生信息
                 4.查询某个学生信息
                 5.删除某个学生
-                6.退出""");
+                6.搜索学生
+                7.退出""");
 
         choice = scanner.nextInt();
+        scanner.nextLine();
         return choice;
     }
 
@@ -88,8 +94,27 @@ public class StudentView {
     }
 
     private void getAllStudentUI(){
-        List<Student> studentEntities = service.getAllStudents();
-        for(Student stu : studentEntities){
+        List<Student> students = service.getAllStudents();
+        for(Student stu : students){
+            System.out.println("ID："+stu.getId()+
+                    ", 姓名："+stu.getName()+
+                    ", 年龄："+stu.getAge()+
+                    ", 班级："+stu.getClassroom());
+        }
+    }
+
+    private void searchStudentsUI(){
+        System.out.println("姓名(选填)：");
+        String name = scanner.nextLine().trim();
+        System.out.println("接下来依次输入MinAge，MaxAge：");
+        System.out.println("最小年龄：");
+        String minStr = scanner.nextLine().trim();
+        Integer minage = minStr.isEmpty()?null:Integer.parseInt(minStr);
+        System.out.println("最大年龄：");
+        String maxStr = scanner.nextLine().trim();
+        Integer maxage = maxStr.isEmpty()?null:Integer.parseInt(maxStr);
+        List<Student> students = service.searchStudents(name,minage,maxage);
+        for(Student stu : students){
             System.out.println("ID："+stu.getId()+
                     ", 姓名："+stu.getName()+
                     ", 年龄："+stu.getAge()+

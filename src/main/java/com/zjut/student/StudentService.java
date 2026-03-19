@@ -111,6 +111,22 @@ public class StudentService {
         }
         return student;
     }
+
+    public List<Student> searchStudents(String name, Integer ageMin, Integer ageMax) {
+        List<Student> allstus = getAllStudents();           // 先拿到所有学生（你已经会）
+        List<Student> result = new ArrayList<>();       // 新建结果列表
+
+        for (Student s : allstus) {                         // 遍历每个学生
+            // 这里写你的两个boolean判断（下面我分步问你）
+            boolean nameMatch = (name == null || name.isEmpty() || s.getName().contains(name));                   // 你来填姓名模糊
+            boolean ageMatch  = (ageMin==null || s.getAge()>=ageMin)&&
+                    (ageMax==null||s.getAge()<=ageMax);                   // 你来填年龄范围
+            if (nameMatch && ageMatch) {
+                result.add(s);
+            }
+        }
+        return result;                                  // 返回过滤后的列表
+    }
     //删除学生
     public void deleteStudent(int id){
         String sql = "delete from tb_student where id = ?";
@@ -157,5 +173,7 @@ public class StudentService {
             throw new RuntimeException("数据库连接出错",e);
         }
     }
+
+
 
 }
