@@ -1,6 +1,6 @@
 name: Java CI with Maven
 
-# 只要你往 main 分支推送代码，就触发这个任务
+# 只要你往 master 分支推送代码，就触发这个任务
 on:
   push:
     branches: [ "master" ]
