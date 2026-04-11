@@ -1,6 +1,7 @@
 package com.zjut.student.service;
 
 import com.zjut.student.Student;
+import com.zjut.student.exception.StudentNotFoundException;
 import com.zjut.student.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,8 @@ public class StudentServiceV2 {
     //按ID查单个学生
     public Student getStudentById(Long id){
         Optional<Student> result = studentRepository.findById(id);
-        return result.orElseThrow();
+        if(result.isEmpty())throw new StudentNotFoundException(id);
+        else return result.get();
     }
     //新增学生
     public Student addStudent(Student student){
