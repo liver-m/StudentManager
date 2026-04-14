@@ -30,6 +30,13 @@ public class StudentController {
         return studentServiceV2.getStudentById(id);
     }
 
+
+    @GetMapping("/slow")
+    public String slowEndpoint() throws InterruptedException{
+        Thread.sleep(500);
+        return Thread.currentThread().toString();
+    }
+
     @PostMapping
     public Student addStu(@RequestBody Student stu){
         return studentServiceV2.addStudent(stu);
