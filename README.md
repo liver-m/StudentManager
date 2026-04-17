@@ -9,19 +9,15 @@
 - [x] **阶段 0 (Phase 0)**: 环境配置与自动化构建 (CI/CD)。
 - [x] **阶段 1a**: Spring Boot 4 骨架 + Docker（已完成）。
 - [x] **阶段 1b**: Java 21 虚拟线程（已完成）。
-- [ ] **阶段 2 (Phase 2)**: 云原生化 (Docker & Kubernetes)。
+- [x] **阶段 2 (Phase 2)**: 云原生化docker-compose + MySQL(已完成)。
 - [ ] **阶段 3 (Phase 3)**: AI 注入 (接入 LangChain4j 与 RAG 架构)。
 
 ## 🛠️ 技术栈 (Tech Stack)
 - **后端 (Backend)**: Java 21 (虚拟线程), Spring Boot 4, JPA.
 - **数据库 (Database)**: MySQL.
-- **工具 (Tools)**: Docker, Maven, GitHub Actions.
-
-## 💻 如何运行 (How to Run)
-1. 克隆项目: `git clone https://github.com/liver-m/StudentManagementSystem.git`
-2. 确保安装了 JDK 21 和 Maven。
-3. 修改数据库配置，然后运行 `mvn spring-boot:run`。
+- **工具 (Tools)**: Docker, docker-compose, Maven, GitHub Actions.
 
 ## Docker运行
-1. `docker build -t student-management-system .`
-2. `docker run -p 8080:8080 student-management-system`
+1. 复制配置文件: `cp docker-compose.example.yml docker-compose.yml`
+2. 修改 `docker-compose.yml` 里的密码
+3. 一键启动: `docker-compose up --build`
