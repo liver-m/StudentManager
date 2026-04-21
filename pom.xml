@@ -14,7 +14,7 @@
     </parent>
 
     <groupId>com.zjut.student</groupId>
-    <artifactId>student-management-system</artifactId>
+    <artifactId>CampusAI</artifactId>
     <version>1.0</version>
 
     <properties>
