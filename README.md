@@ -2,8 +2,8 @@
 ![Java CI](https://github.com/liver-m/StudentManagementSystem/actions/workflows/maven.yml/badge.svg)
 
 ## 📖 项目简介 (Introduction)
-- **中文**：一个从传统的 JDBC/Servlet 架构起步，最终将进化为支持高并发、集成 AI 助手的生产级 Java 项目。
-- **English**: A Java project evolving from legacy JDBC/Servlet to a high-concurrency, AI-integrated production platform.
+- **中文**：用 Spring Boot + Tool-Calling Agent 构建的生产级多智能体系统，支持自主规划、知识检索、工具调用与可观测性，演示 AI 如何真正落地到真实业务场景。
+- **English**: The production-level multi-agent system built with Spring Boot + Tool-Calling Agent supports autonomous planning, knowledge retrieval, tool calling, and observability, demonstrating how AI can truly be implemented in real business scenarios.
 
 ## 🚀 进化路线图 (Roadmap)
 - [x] **阶段 0 (Phase 0)**: 环境配置与自动化构建 (CI/CD)。
