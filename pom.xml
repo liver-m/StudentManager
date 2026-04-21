@@ -47,6 +47,21 @@
         </dependency>
 
 
+        <!-- Spring Boot 4专用：核心AI Service -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-spring-boot4-starter</artifactId>
+            <version>1.13.0-beta23</version>
+        </dependency>
+
+
+        <!-- Spring Boot 4专用：Ollama接口 -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-ollama-spring-boot4-starter</artifactId>
+            <version>1.13.0-beta23</version>
+        </dependency>
+
 
     </dependencies>
 

@@ -44,3 +44,7 @@ postman/
 
 ### Docker ###
 docker-compose.yml
+
+### Claude ###
+CLAUDE.md
+.claude/
