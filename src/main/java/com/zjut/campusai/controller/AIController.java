@@ -1,6 +1,6 @@
 package com.zjut.campusai.controller;
 
-import dev.langchain4j.model.chat.ChatModel;
+import com.zjut.campusai.ai.StudentAssistant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/ai")
 public class AIController {
 
-    private final ChatModel chatModel;
+    private final StudentAssistant studentAssistant;
 
     @Autowired
-    public AIController(ChatModel chatModel) {
-        this.chatModel = chatModel;
+    public AIController(StudentAssistant studentAssistant) {
+        this.studentAssistant = studentAssistant;
     }
 
     @GetMapping("/ask")
     public String ask(@RequestParam String question) {
-        return chatModel.chat(question);
+        return studentAssistant.chat(question);
     }
 }

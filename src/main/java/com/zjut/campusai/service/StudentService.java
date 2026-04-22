@@ -29,6 +29,13 @@ public class StudentService {
         if(result.isEmpty())throw new StudentNotFoundException(id);
         else return result.get();
     }
+
+    //按姓名查学生
+    public Student getStudentByName(String name){
+        Optional<Student> result = studentRepository.findByName(name);
+        if(result.isEmpty())throw new StudentNotFoundException(name);
+        else return result.get();
+    }
     //新增学生
     public Student addStudent(Student student){
         return studentRepository.save(student);
