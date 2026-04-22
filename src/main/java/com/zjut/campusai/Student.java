@@ -1,4 +1,4 @@
-package com.zjut.student;
+package com.zjut.campusai;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

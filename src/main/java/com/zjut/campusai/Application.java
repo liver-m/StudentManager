@@ -1,4 +1,4 @@
-package com.zjut.student;
+package com.zjut.campusai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

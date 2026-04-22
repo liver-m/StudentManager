@@ -1,4 +1,4 @@
-package com.zjut.student.controller;
+package com.zjut.campusai.controller;
 
 import dev.langchain4j.model.chat.ChatModel;
 import org.springframework.beans.factory.annotation.Autowired;

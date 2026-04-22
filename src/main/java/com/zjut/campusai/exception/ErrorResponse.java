@@ -1,4 +1,4 @@
-package com.zjut.student.exception;
+package com.zjut.campusai.exception;
 import java.time.LocalDateTime;
 
 public class ErrorResponse {

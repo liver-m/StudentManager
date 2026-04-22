@@ -1,5 +1,5 @@
 //HttpClient内部线程池干扰，send同步阻塞 ————干扰测试结果。
-package com.zjut.student.loadtest;
+package com.zjut.campusai.loadtest;
 
 import java.net.URI;
 import java.net.http.HttpClient;

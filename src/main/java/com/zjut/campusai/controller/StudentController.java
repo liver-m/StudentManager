@@ -1,7 +1,7 @@
-package com.zjut.student.controller;
+package com.zjut.campusai.controller;
 
-import com.zjut.student.Student;
-import com.zjut.student.service.StudentService;
+import com.zjut.campusai.Student;
+import com.zjut.campusai.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.zjut.student.exception;
+package com.zjut.campusai.exception;
 
 public class StudentNotFoundException extends RuntimeException{
     public StudentNotFoundException(Long id){

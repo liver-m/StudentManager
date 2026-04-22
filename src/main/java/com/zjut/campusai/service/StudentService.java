@@ -1,8 +1,8 @@
-package com.zjut.student.service;
+package com.zjut.campusai.service;
 
-import com.zjut.student.Student;
-import com.zjut.student.exception.StudentNotFoundException;
-import com.zjut.student.repository.StudentRepository;
+import com.zjut.campusai.Student;
+import com.zjut.campusai.exception.StudentNotFoundException;
+import com.zjut.campusai.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

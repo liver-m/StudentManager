@@ -3,4 +3,4 @@ WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 EXPOSE 8080
-CMD ["java", "-jar", "target/student-management-system-1.0.jar"]
+CMD ["java", "-jar", "target/CampusAI-1.0.jar"]

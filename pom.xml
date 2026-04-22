@@ -13,7 +13,7 @@
     <version>4.0.5</version>
     </parent>
 
-    <groupId>com.zjut.student</groupId>
+    <groupId>com.zjut.campusai</groupId>
     <artifactId>CampusAI</artifactId>
     <version>1.0</version>
 

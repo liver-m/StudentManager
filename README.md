@@ -1,21 +1,25 @@
 # Student Management System | 学生管理系统
-![Java CI](https://github.com/liver-m/StudentManagementSystem/actions/workflows/maven.yml/badge.svg)
+[![Java CI](https://github.com/liver-m/CampusAI/actions/workflows/maven.yml/badge.svg)](https://github.com/liver-m/CampusAI/actions/workflows/maven.yml)
 
 ## 📖 项目简介 (Introduction)
 - **中文**：用 Spring Boot + Tool-Calling Agent 构建的生产级多智能体系统，支持自主规划、知识检索、工具调用与可观测性，演示 AI 如何真正落地到真实业务场景。
 - **English**: The production-level multi-agent system built with Spring Boot + Tool-Calling Agent supports autonomous planning, knowledge retrieval, tool calling, and observability, demonstrating how AI can truly be implemented in real business scenarios.
 
 ## 🚀 进化路线图 (Roadmap)
-- [x] **阶段 0 (Phase 0)**: 环境配置与自动化构建 (CI/CD)。
-- [x] **阶段 1a**: Spring Boot 4.0.5 骨架 + Docker（已完成）。
-- [x] **阶段 1b**: Java 21 虚拟线程（已完成）。
-- [x] **阶段 2 (Phase 2)**: 云原生化docker-compose + MySQL(已完成)。
-- [ ] **阶段 3 (Phase 3)**: AI 注入 (接入 LangChain4j 与 RAG 架构)。
+
+- [x] **阶段 0 (Phase 0)**: 环境配置与自动化构建 (CI/CD) ✅
+- [x] **阶段 1a (Phase 1a)**: Spring Boot 骨架 + Docker ✅
+- [x] **阶段 1b (Phase 1b)**: Java 21 虚拟线程 + 性能验证 ✅
+- [x] **阶段 2 (Phase 2)**: 云原生化 docker-compose + MySQL ✅
+- [ ] **阶段 3 (Phase 3)**: AI 注入 —— LangChain4j Tool-Calling Agent + Ollama 本地模型 🚧
+- [ ] **阶段 4 (Phase 4)**: JWT 安全 + 公网部署 (Railway/Render)
+- [ ] **阶段 5 (Phase 5)**: Supervisor Agent + RAG + 可观测性
 
 ## 🛠️ 技术栈 (Tech Stack)
 - **后端 (Backend)**: Java 21 (虚拟线程), Spring Boot 4.0.5, JPA.
 - **数据库 (Database)**: MySQL.
 - **工具 (Tools)**: Docker, docker-compose, Maven, GitHub Actions.
+- **AI框架 (AI)**: LangChain4j, Ollama (qwen3.5:4b)
 
 ## 🐳 快速启动 (Quick Start)
 1. 复制配置文件: `cp docker-compose.example.yml docker-compose.yml`

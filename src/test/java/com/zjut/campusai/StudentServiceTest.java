@@ -1,4 +1,4 @@
-package com.zjut.student;
+package com.zjut.campusai;
 
 public class StudentServiceTest {
 }
