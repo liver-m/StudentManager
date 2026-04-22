@@ -1,4 +1,4 @@
-# Student Management System | 学生管理系统
+# CampusAI | 校园智能体
 [![Java CI](https://github.com/liver-m/CampusAI/actions/workflows/maven.yml/badge.svg)](https://github.com/liver-m/CampusAI/actions/workflows/maven.yml)
 
 ## 📖 项目简介 (Introduction)
@@ -6,7 +6,6 @@
 - **English**: The production-level multi-agent system built with Spring Boot + Tool-Calling Agent supports autonomous planning, knowledge retrieval, tool calling, and observability, demonstrating how AI can truly be implemented in real business scenarios.
 
 ## 🚀 进化路线图 (Roadmap)
-
 - [x] **阶段 0 (Phase 0)**: 环境配置与自动化构建 (CI/CD) ✅
 - [x] **阶段 1a (Phase 1a)**: Spring Boot 骨架 + Docker ✅
 - [x] **阶段 1b (Phase 1b)**: Java 21 虚拟线程 + 性能验证 ✅
