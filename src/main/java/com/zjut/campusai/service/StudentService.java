@@ -57,5 +57,15 @@ public class StudentService {
             return studentRepository.save(student);
         }
     }
+
+    public Student updateScore(Long id, int newScore){
+        Optional<Student> result = studentRepository.findById(id);
+        if(result.isEmpty())throw new StudentNotFoundException(id);
+        else{
+            Student student = result.get();
+            student.setScore(newScore);
+            return studentRepository.save(student);
+        }
+    }
 }
 
