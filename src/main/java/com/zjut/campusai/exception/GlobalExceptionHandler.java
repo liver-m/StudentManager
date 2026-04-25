@@ -11,7 +11,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({
             StudentNotFoundException.class,
-            CourseNotFoundException.class
+            CourseNotFoundException.class,
+            StudentCourseNotFoundException.class
     })
     public ResponseEntity<ErrorResponse> handleNotFound(RuntimeException ex) {
         return buildResponse(404, ex.getMessage());

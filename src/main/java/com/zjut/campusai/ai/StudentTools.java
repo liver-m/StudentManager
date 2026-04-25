@@ -25,8 +25,8 @@ public class StudentTools {
     public Student getStudentInfoById(Long studentId) { return studentService.getStudentById(studentId);}
 
     @Tool("根据学生id修改学生的成绩，成绩只能在0~100之间。")
-    public String updateScore(Long studentId, int newScore){
-        return studentService.updateScore(studentId,newScore);
+    public String updateScore(Long studentId,String courseName, int newScore){
+        return studentService.updateScore(studentId,courseName,newScore);
     }
 
     @Tool("根据学生id查询学生的各科成绩,并给学生推荐学习课程")

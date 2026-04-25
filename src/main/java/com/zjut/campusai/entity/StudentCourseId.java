@@ -9,6 +9,14 @@ public class StudentCourseId implements Serializable {
     private Long studentId;
     private Long courseId;
 
+    public StudentCourseId() {
+    }
+
+    public StudentCourseId(Long studentId, Long courseId) {
+        this.studentId = studentId;
+        this.courseId = courseId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
