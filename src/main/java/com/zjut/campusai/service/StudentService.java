@@ -15,6 +15,7 @@ import com.zjut.campusai.repository.CourseRepository;
 import com.zjut.campusai.repository.StudentCourseRepository;
 import com.zjut.campusai.repository.StudentRepository;
 
+import com.zjut.campusai.vo.StudentCourseVO;
 import com.zjut.campusai.vo.StudentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -115,7 +116,7 @@ public class StudentService {
     }
 
     //根据Id进行联表查询学生的选课成绩
-    public List<Object[]> getStudentCourseScoreById(Long id) {
+    public List<StudentCourseVO> getStudentCourseScoreById(Long id) {
         Optional<Student> result1 = studentRepository.findById(id);
         if (result1.isEmpty()) throw new StudentNotFoundException(id);
         return studentCourseRepository.findCoursesByStudentId(id);
@@ -123,12 +124,12 @@ public class StudentService {
 
     //查询学生哪些课程不及格，给学生推荐学习课程
     public String getCourseRecommendation(Long studentId) {
-        List<Object[]> list = getStudentCourseScoreById(studentId);
+        List<StudentCourseVO> list = getStudentCourseScoreById(studentId);
         if (list.isEmpty()) throw new CourseNotFoundException("没有该学生的选课记录");
 
         StringBuilder sb = new StringBuilder();
         list.forEach(row -> {
-            if ((int) row[1] < 60) sb.append(String.format("%s - %s\n", row[0], row[1]));
+            if (row.getScore() < 60) sb.append(String.format("%s - %s\n", row.getCourseName(), row.getScore()));
         });
         if (sb.isEmpty()) return "该学生没有不及格的课程";
         return sb.toString();
@@ -136,7 +137,7 @@ public class StudentService {
 
     //查询学生的成绩情况，加以判断，并进行标识，以生成学习预警
     public WarningReport generateWarningReport(Long studentId) {
-        List<Object[]> list = getStudentCourseScoreById(studentId);
+        List<StudentCourseVO> list = getStudentCourseScoreById(studentId);
         if (list.isEmpty()) throw new CourseNotFoundException("没有该学生的选课记录");
 
         StudentVO student = getStudentById(studentId);
@@ -147,8 +148,8 @@ public class StudentService {
         Map<String, Integer> courseScore = new HashMap<>();
 
         list.forEach(row -> {
-            courseScore.put((String) row[0], (Integer) row[1]);
-            if ((Integer) row[1] < 60) failAmount[0]++;
+            courseScore.put(row.getCourseName(), row.getScore());
+            if (row.getScore() < 60) failAmount[0]++;
         });
 
         if (failAmount[0] == 0) riskLevel = "low";

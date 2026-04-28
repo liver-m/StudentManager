@@ -2,6 +2,7 @@ package com.zjut.campusai.repository;
 
 import com.zjut.campusai.entity.StudentCourse;
 import com.zjut.campusai.entity.StudentCourseId;
+import com.zjut.campusai.vo.StudentCourseVO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,11 +12,11 @@ import java.util.List;
 @Repository
 public interface StudentCourseRepository extends JpaRepository<StudentCourse, StudentCourseId> {
     @Query("""
-            SELECT c.courseName, sc.score
+            SELECT new com.zjut.campusai.vo.StudentCourseVO(c.courseName, sc.score)
             FROM Course c
             JOIN StudentCourse sc
             ON c.id = sc.id.courseId
             WHERE sc.id.studentId = :studentId
             """)
-    List<Object[]> findCoursesByStudentId(@Param("studentId") Long studentId);
+    List<StudentCourseVO> findCoursesByStudentId(@Param("studentId") Long studentId);
 }
