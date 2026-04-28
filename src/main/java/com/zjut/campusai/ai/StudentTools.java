@@ -1,8 +1,8 @@
 package com.zjut.campusai.ai;
 
 import com.zjut.campusai.dto.WarningReport;
-import com.zjut.campusai.entity.Student;
 import com.zjut.campusai.service.StudentService;
+import com.zjut.campusai.vo.StudentVO;
 import dev.langchain4j.agent.tool.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,12 +17,14 @@ public class StudentTools {
     }
 
     @Tool("根据学生姓名查询学生信息")
-    public Student getStudentInfoByName(String name){
+    public StudentVO getStudentInfoByName(String name){
         return studentService.getStudentByName(name);
     }
 
     @Tool("根据学生id查询学生信息")
-    public Student getStudentInfoById(Long studentId) { return studentService.getStudentById(studentId);}
+    public StudentVO getStudentInfoById(Long studentId) {
+        return studentService.getStudentById(studentId);
+    }
 
     @Tool("根据学生id修改学生的成绩，成绩只能在0~100之间。")
     public String updateScore(Long studentId,String courseName, int newScore){

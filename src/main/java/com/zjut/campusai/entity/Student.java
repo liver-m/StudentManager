@@ -15,24 +15,21 @@ public class Student {
     private String name;
     private int age;
     private String classroom;
-    private int score;
 
     public Student(){
     }
 
-    public Student( String name,int age, String classroom, int score){
+    public Student( String name,int age, String classroom){
         this.age = age;
         this.name = name;
         this.classroom = classroom;
-        this.score = score;
     }
 
-    public Student(Long id, String name,int age, String classroom, int score){
+    public Student(Long id, String name,int age, String classroom){
         this.id = id;
         this.age = age;
         this.name = name;
         this.classroom =classroom;
-        this.score = score;
     }
 
     @Override
@@ -42,7 +39,6 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", classroom='" + classroom + '\'' +
-                ", score=" + score +
                 '}';
     }
 
@@ -78,11 +74,4 @@ public class Student {
         return this.id;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
 }

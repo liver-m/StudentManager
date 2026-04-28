@@ -1,7 +1,9 @@
 package com.zjut.campusai.controller;
 
-import com.zjut.campusai.entity.Student;
+import com.zjut.campusai.common.ApiResponse;
+import com.zjut.campusai.dto.StudentRequest;
 import com.zjut.campusai.service.StudentService;
+import com.zjut.campusai.vo.StudentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +22,14 @@ public class StudentController {
     }
 
     @GetMapping
-    public List<Student> getAllStu(){
-        return studentService.getAllStudents();
+    public ApiResponse<List<StudentVO>> getAllStu(){
+        return ApiResponse.success(studentService.getAllStudents());
     }
 
 
     @GetMapping("{id}")
-    public Student getStuById(@PathVariable Long id){
-        return studentService.getStudentById(id);
+    public ApiResponse<StudentVO> getStuById(@PathVariable Long id){
+        return ApiResponse.success(studentService.getStudentById(id));
     }
 
 
@@ -38,17 +40,18 @@ public class StudentController {
     }
 
     @PostMapping
-    public Student addStu(@RequestBody Student stu){
-        return studentService.addStudent(stu);
+    public ApiResponse<StudentVO> addStu(@RequestBody StudentRequest request){
+        return ApiResponse.success(studentService.addStudent(request));
     }
 
     @DeleteMapping("{id}")
-    public void deleteStu(@PathVariable Long id){
+    public ApiResponse<Void> deleteStu(@PathVariable Long id){
         studentService.deleteStudentById(id);
+        return ApiResponse.success(null);
     }
 
     @PutMapping("{id}")
-    public Student updateStu(@PathVariable Long id,@RequestBody Student stu){
-        return studentService.updateStudent(id,stu);
+    public ApiResponse<StudentVO> updateStu(@PathVariable Long id,@RequestBody StudentRequest stu){
+        return ApiResponse.success(studentService.updateStudent(id,stu));
     }
 }

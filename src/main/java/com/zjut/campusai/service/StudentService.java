@@ -1,5 +1,6 @@
 package com.zjut.campusai.service;
 
+import com.zjut.campusai.dto.StudentRequest;
 import com.zjut.campusai.dto.WarningReport;
 import com.zjut.campusai.entity.Course;
 import com.zjut.campusai.entity.Student;
@@ -9,10 +10,12 @@ import com.zjut.campusai.exception.CourseNotFoundException;
 import com.zjut.campusai.exception.InvalidScoreException;
 import com.zjut.campusai.exception.StudentCourseNotFoundException;
 import com.zjut.campusai.exception.StudentNotFoundException;
+import com.zjut.campusai.mapper.StudentMapper;
 import com.zjut.campusai.repository.CourseRepository;
 import com.zjut.campusai.repository.StudentCourseRepository;
 import com.zjut.campusai.repository.StudentRepository;
 
+import com.zjut.campusai.vo.StudentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,38 +30,45 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final StudentCourseRepository studentCourseRepository;
     private final CourseRepository courseRepository;
+    private final StudentMapper studentMapper;
 
     @Autowired
     public StudentService(StudentRepository studentRepository,
                           StudentCourseRepository studentCourseRepository,
-                          CourseRepository courseRepository) {
+                          CourseRepository courseRepository,
+                          StudentMapper studentMapper) {
         this.studentRepository = studentRepository;
         this.studentCourseRepository = studentCourseRepository;
         this.courseRepository = courseRepository;
+        this.studentMapper = studentMapper;
     }
 
     //查所有学生
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public List<StudentVO> getAllStudents() {
+        List<Student> students = studentRepository.findAll();
+        return students.stream()
+                .map(studentMapper::toVO)
+                .toList();
     }
 
     //按ID查单个学生
-    public Student getStudentById(Long id) {
+    public StudentVO getStudentById(Long id) {
         Optional<Student> result = studentRepository.findById(id);
         if (result.isEmpty()) throw new StudentNotFoundException(id);
-        else return result.get();
+        else return studentMapper.toVO(result.get());
     }
 
     //按姓名查学生
-    public Student getStudentByName(String name) {
+    public StudentVO getStudentByName(String name) {
         Optional<Student> result = studentRepository.findByName(name);
         if (result.isEmpty()) throw new StudentNotFoundException(name);
-        else return result.get();
+        else return studentMapper.toVO(result.get());
     }
 
     //新增学生
-    public Student addStudent(Student student) {
-        return studentRepository.save(student);
+    public StudentVO addStudent(StudentRequest request) {
+        Student student = new Student(request.getName(),request.getAge(),request.getClassroom());
+        return studentMapper.toVO(studentRepository.save(student));
     }
 
     //按ID删除学生
@@ -69,12 +79,12 @@ public class StudentService {
     }
 
     //修改学生信息
-    public Student updateStudent(Long id, Student student) {
+    public StudentVO updateStudent(Long id, StudentRequest request) {
         Optional<Student> result = studentRepository.findById(id);
         if (result.isEmpty()) throw new StudentNotFoundException(id);
         else {
-            student.setId(id);
-            return studentRepository.save(student);
+            Student student = new Student(id,request.getName(),request.getAge(),request.getClassroom());
+            return studentMapper.toVO(studentRepository.save(student));
         }
     }
 
@@ -129,7 +139,7 @@ public class StudentService {
         List<Object[]> list = getStudentCourseScoreById(studentId);
         if (list.isEmpty()) throw new CourseNotFoundException("没有该学生的选课记录");
 
-        Student student = getStudentById(studentId);
+        StudentVO student = getStudentById(studentId);
         WarningReport warningReport;
 
         String riskLevel;
