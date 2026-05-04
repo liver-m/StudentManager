@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -67,12 +68,14 @@ public class StudentService {
     }
 
     //新增学生
+    @Transactional
     public StudentVO addStudent(StudentRequest request) {
         Student student = new Student(request.getName(),request.getAge(),request.getClassroom());
         return studentMapper.toVO(studentRepository.save(student));
     }
 
     //按ID删除学生
+    @Transactional
     public void deleteStudentById(Long id) {
         Optional<Student> result = studentRepository.findById(id);
         if (result.isEmpty()) throw new StudentNotFoundException(id);
@@ -80,6 +83,7 @@ public class StudentService {
     }
 
     //修改学生信息
+    @Transactional
     public StudentVO updateStudent(Long id, StudentRequest request) {
         Optional<Student> result = studentRepository.findById(id);
         if (result.isEmpty()) throw new StudentNotFoundException(id);
@@ -90,6 +94,7 @@ public class StudentService {
     }
 
     //修改学生某一门课程的成绩
+    @Transactional
     public String updateScore(Long id, String courseName, int newScore) {
         if (newScore < 0 || newScore > 100) throw new InvalidScoreException("成绩不合适，应是0~100之间");
 
