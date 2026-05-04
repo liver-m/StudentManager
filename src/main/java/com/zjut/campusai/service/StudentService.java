@@ -18,6 +18,8 @@ import com.zjut.campusai.repository.StudentRepository;
 import com.zjut.campusai.vo.StudentCourseVO;
 import com.zjut.campusai.vo.StudentVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -45,11 +47,9 @@ public class StudentService {
     }
 
     //查所有学生
-    public List<StudentVO> getAllStudents() {
-        List<Student> students = studentRepository.findAll();
-        return students.stream()
-                .map(studentMapper::toVO)
-                .toList();
+    public Page<StudentVO> getAllStudents(Pageable pageable) {
+        Page<Student> students = studentRepository.findAll(pageable);
+        return students.map(studentMapper::toVO);
     }
 
     //按ID查单个学生

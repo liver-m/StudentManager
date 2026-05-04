@@ -6,9 +6,9 @@ import com.zjut.campusai.service.StudentService;
 import com.zjut.campusai.vo.StudentVO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -23,8 +23,8 @@ public class StudentController {
     }
 
     @GetMapping
-    public ApiResponse<List<StudentVO>> getAllStu(){
-        return ApiResponse.success(studentService.getAllStudents());
+    public ApiResponse<Page<StudentVO>> getAllStu(Pageable pageable){
+        return ApiResponse.success(studentService.getAllStudents(pageable));
     }
 
 

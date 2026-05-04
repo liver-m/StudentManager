@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidScoreException.class)
-    public ResponseEntity<ApiResponse<?>> handleBadRequest(RuntimeException ex) {
+    public ResponseEntity<ApiResponse<?>> handleBadRequest(InvalidScoreException ex) {
         return buildResponse(400, ex.getMessage());
     }
 
