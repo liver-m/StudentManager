@@ -1,6 +1,7 @@
 package com.zjut.campusai.controller;
 
 import com.zjut.campusai.ai.StudentAssistant;
+import com.zjut.campusai.common.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class AIController {
     }
 
     @GetMapping("/ask")
-    public String ask(@RequestParam String question) {
-        return studentAssistant.chat(question);
+    public ApiResponse<String> ask(@RequestParam String question) {
+        return ApiResponse.success(studentAssistant.chat(question));
     }
 }
