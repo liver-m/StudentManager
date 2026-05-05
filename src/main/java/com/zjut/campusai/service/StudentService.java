@@ -18,6 +18,7 @@ import com.zjut.campusai.repository.StudentRepository;
 import com.zjut.campusai.vo.StudentCourseVO;
 import com.zjut.campusai.vo.StudentVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,7 @@ public class StudentService {
     }
 
     //按ID查单个学生
+    @Cacheable(value = "students", key = "#id")
     public StudentVO getStudentById(Long id) {
         Optional<Student> result = studentRepository.findById(id);
         if (result.isEmpty()) throw new StudentNotFoundException(id);
@@ -61,6 +63,7 @@ public class StudentService {
     }
 
     //按姓名查学生
+    @Cacheable(value = "students-name", key = "#name")
     public StudentVO getStudentByName(String name) {
         Optional<Student> result = studentRepository.findByName(name);
         if (result.isEmpty()) throw new StudentNotFoundException(name);
