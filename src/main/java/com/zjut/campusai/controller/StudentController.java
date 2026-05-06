@@ -2,6 +2,7 @@ package com.zjut.campusai.controller;
 
 import com.zjut.campusai.common.ApiResponse;
 import com.zjut.campusai.common.PageResult;
+import com.zjut.campusai.dto.LoginRequest;
 import com.zjut.campusai.dto.StudentRequest;
 import com.zjut.campusai.service.StudentService;
 import com.zjut.campusai.vo.StudentVO;
@@ -47,5 +48,10 @@ public class StudentController {
     @PutMapping("{id}")
     public ApiResponse<StudentVO> updateStu(@PathVariable Long id,@RequestBody @Valid StudentRequest stu){
         return ApiResponse.success(studentService.updateStudent(id,stu));
+    }
+
+    @PostMapping("/login")
+    public ApiResponse<String> login(@RequestBody @Valid LoginRequest request){
+        return ApiResponse.success(studentService.login(request));
     }
 }

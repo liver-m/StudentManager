@@ -21,8 +21,11 @@ public class GlobalExceptionHandler {
         return buildResponse(404, ex.getMessage());
     }
 
-    @ExceptionHandler(InvalidScoreException.class)
-    public ResponseEntity<ApiResponse<?>> handleBadRequest(InvalidScoreException ex) {
+    @ExceptionHandler({
+            InvalidScoreException.class,
+            InvalidPasswordException.class
+    })
+    public ResponseEntity<ApiResponse<?>> handleBadRequest(RuntimeException ex) {
         return buildResponse(400, ex.getMessage());
     }
 

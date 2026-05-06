@@ -15,6 +15,7 @@ public class Student {
     private String name;
     private int age;
     private String classroom;
+    private String password;
 
     public Student(){
     }
@@ -74,4 +75,11 @@ public class Student {
         return this.id;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

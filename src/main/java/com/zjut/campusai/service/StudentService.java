@@ -1,20 +1,19 @@
 package com.zjut.campusai.service;
 
+import com.zjut.campusai.dto.LoginRequest;
 import com.zjut.campusai.dto.StudentRequest;
 import com.zjut.campusai.dto.WarningReport;
 import com.zjut.campusai.entity.Course;
 import com.zjut.campusai.entity.Student;
 import com.zjut.campusai.entity.StudentCourse;
 import com.zjut.campusai.entity.StudentCourseId;
-import com.zjut.campusai.exception.CourseNotFoundException;
-import com.zjut.campusai.exception.InvalidScoreException;
-import com.zjut.campusai.exception.StudentCourseNotFoundException;
-import com.zjut.campusai.exception.StudentNotFoundException;
+import com.zjut.campusai.exception.*;
 import com.zjut.campusai.mapper.StudentMapper;
 import com.zjut.campusai.repository.CourseRepository;
 import com.zjut.campusai.repository.StudentCourseRepository;
 import com.zjut.campusai.repository.StudentRepository;
 
+import com.zjut.campusai.util.JwtUtil;
 import com.zjut.campusai.vo.StudentCourseVO;
 import com.zjut.campusai.vo.StudentVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +35,19 @@ public class StudentService {
     private final StudentCourseRepository studentCourseRepository;
     private final CourseRepository courseRepository;
     private final StudentMapper studentMapper;
+    private final JwtUtil jwtUtil;
 
     @Autowired
     public StudentService(StudentRepository studentRepository,
                           StudentCourseRepository studentCourseRepository,
                           CourseRepository courseRepository,
-                          StudentMapper studentMapper) {
+                          StudentMapper studentMapper,
+                          JwtUtil jwtUtil) {
         this.studentRepository = studentRepository;
         this.studentCourseRepository = studentCourseRepository;
         this.courseRepository = courseRepository;
         this.studentMapper = studentMapper;
+        this.jwtUtil = jwtUtil;
     }
 
     //查所有学生
@@ -166,6 +168,19 @@ public class StudentService {
 
         warningReport = new WarningReport(student.getName(), courseScore, failAmount[0], riskLevel);
         return warningReport;
+    }
+
+    //学生登录
+    public String login(LoginRequest request){
+        String name = request.getName();
+        String password = request.getPassword();
+        Optional<Student> result = studentRepository.findByName(name);
+        if(result.isEmpty())throw new StudentNotFoundException(name);
+        Student student = result.get();
+        if(student.getPassword().equals(password)){
+            return jwtUtil.generateToken(name);
+        }
+        else throw new InvalidPasswordException("密码错误");
     }
 }
 
