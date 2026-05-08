@@ -45,4 +45,18 @@ public class JwtUtil {
                 .getPayload()
                 .getSubject();
     }
+
+    //判断Token是否合法
+    public Boolean validateToken(String token){
+        try{
+            Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+
 }

@@ -22,8 +22,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({
-            InvalidScoreException.class,
-            InvalidPasswordException.class
+            InvalidScoreException.class
     })
     public ResponseEntity<ApiResponse<?>> handleBadRequest(RuntimeException ex) {
         return buildResponse(400, ex.getMessage());
@@ -36,6 +35,13 @@ public class GlobalExceptionHandler {
                 .map(e -> e.getField() + ": " + e.getDefaultMessage())
                 .collect(Collectors.joining(", "));
         return buildResponse(400, message);
+    }
+
+    @ExceptionHandler({
+            InvalidPasswordException.class
+    })
+    public ResponseEntity<ApiResponse<?>> handleInvalidPassword(RuntimeException ex) {
+        return buildResponse(401, ex.getMessage());
     }
 
     private ResponseEntity<ApiResponse<?>> buildResponse(int code, String message) {
