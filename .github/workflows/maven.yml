@@ -22,4 +22,4 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml # 第三步：尝试编译并打包你的项目
+        run: mvn -B package # 第三步：尝试编译并打包你的项目
