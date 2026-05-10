@@ -18,18 +18,19 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http,
                                            JwtAuthenticationFilter jwtAuthenticationFilter)
             throws Exception {
-        http.csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/students/login").permitAll()
-                    .anyRequest().authenticated())
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-            .exceptionHandling(ex -> ex
-                    .authenticationEntryPoint(((request,
-                                                response,
-                                                authException) -> response
-                            .setStatus(HttpServletResponse.SC_UNAUTHORIZED))));
-        return http.build();
+        return http.csrf(csrf -> csrf.disable())
+                    .sessionManagement(session -> session
+                            .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    .authorizeHttpRequests(auth -> auth
+                            .requestMatchers("/students/login").permitAll()
+                            .anyRequest().authenticated())
+                    .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                    .exceptionHandling(ex -> ex
+                            .authenticationEntryPoint(((request,
+                                                        response,
+                                                        authException) -> response
+                                    .setStatus(HttpServletResponse.SC_UNAUTHORIZED))))
+                    .build();
+
     }
 }
