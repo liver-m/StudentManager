@@ -24,8 +24,12 @@ public class StudentController {
     }
 
     @GetMapping
-    public ApiResponse<PageResult<StudentVO>> getAllStu(Pageable pageable){
-        return ApiResponse.success(PageResult.of(studentService.getAllStudents(pageable)));
+    public ApiResponse<PageResult<StudentVO>> getAllStu(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String classroom,
+            @RequestParam(required = false) Integer minAge,
+            Pageable pageable){
+        return ApiResponse.success(PageResult.of(studentService.getAllStudents(name,classroom,minAge,pageable)));
     }
 
 

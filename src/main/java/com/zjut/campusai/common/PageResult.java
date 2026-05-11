@@ -21,7 +21,11 @@ public class PageResult<T>{
     }
 
     public static <T> PageResult<T> of(Page<T> page) {
-        return new PageResult<>(page.getContent(),page.getTotalElements(),page.getTotalPages(),page.getNumber(),page.getSize());
+        return new PageResult<>(page.getContent(),
+                                page.getTotalElements(),
+                                page.getTotalPages(),
+                                page.getNumber(),
+                                page.getSize());
     }
 
     public long getTotalElements() {
