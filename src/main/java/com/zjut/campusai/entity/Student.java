@@ -1,9 +1,8 @@
 package com.zjut.campusai.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Student {
@@ -16,6 +15,9 @@ public class Student {
     private int age;
     private String classroom;
     private String password;
+
+    @OneToMany(mappedBy = "student")
+    private List<StudentCourse> studentCourses;
 
     public Student(){
     }

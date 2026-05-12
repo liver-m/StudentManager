@@ -28,8 +28,10 @@ public class StudentController {
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String classroom,
             @RequestParam(required = false) Integer minAge,
+            @RequestParam(required = false) Integer maxAge,
+            @RequestParam(required = false) String courseName,
             Pageable pageable){
-        return ApiResponse.success(PageResult.of(studentService.getAllStudents(name,classroom,minAge,pageable)));
+        return ApiResponse.success(PageResult.of(studentService.getAllStudents(name,classroom,minAge,maxAge,courseName,pageable)));
     }
 
 

@@ -12,11 +12,11 @@ import com.zjut.campusai.mapper.StudentMapper;
 import com.zjut.campusai.repository.CourseRepository;
 import com.zjut.campusai.repository.StudentCourseRepository;
 import com.zjut.campusai.repository.StudentRepository;
-
 import com.zjut.campusai.spec.StudentSpec;
 import com.zjut.campusai.util.JwtUtil;
 import com.zjut.campusai.vo.StudentCourseVO;
 import com.zjut.campusai.vo.StudentVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -53,11 +53,15 @@ public class StudentService {
     }
 
     //查所有学生
-    public Page<StudentVO> getAllStudents(String name, String classroom, Integer minAge,Pageable pageable) {
+    public Page<StudentVO> getAllStudents(String name, String classroom, Integer minAge,
+                                          Integer maxAge ,String courseName, Pageable pageable) {
         Specification<Student> spec = Specification
                 .where(StudentSpec.hasName(name))
                 .and(StudentSpec.hasClassroom(classroom))
-                .and(StudentSpec.minAge(minAge));
+                .and(StudentSpec.minAge(minAge))
+                .and(StudentSpec.maxAge(maxAge))
+                .and(StudentSpec.hasCourseName(courseName));
+
         Page<Student> students = studentRepository.findAll(spec,pageable);
         return students.map(studentMapper::toVO);
     }

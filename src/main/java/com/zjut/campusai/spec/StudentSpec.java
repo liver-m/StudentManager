@@ -1,6 +1,9 @@
 package com.zjut.campusai.spec;
 
+import com.zjut.campusai.entity.Course;
 import com.zjut.campusai.entity.Student;
+import com.zjut.campusai.entity.StudentCourse;
+import jakarta.persistence.criteria.Join;
 import org.springframework.data.jpa.domain.Specification;
 
 public class StudentSpec {
@@ -26,6 +29,21 @@ public class StudentSpec {
         return (root, query, cb) -> {
             if(age == null)return null;
             return cb.greaterThanOrEqualTo(root.get("age"), age);
+        };
+    }
+
+    public static Specification<Student> maxAge(Integer age){
+        return (root, query, cb) -> {
+            if(age == null)return null;
+            return cb.lessThanOrEqualTo(root.get("age"), age);
+        };
+    }
+
+    public static Specification<Student> hasCourseName(String courseName){
+        return(root, query, cb) -> {
+            Join<Student, StudentCourse> scJoin = root.join("studentCourses");
+            Join<StudentCourse, Course> courseJoin = scJoin.join("course");
+            return cb.like(courseJoin.get("courseName"), "%" + courseName + "%");
         };
     }
 }
