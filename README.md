@@ -4,12 +4,11 @@
 
 ## 📖 项目简介 (Introduction)
 
-- **中文**：用 Spring Boot + Tool-Calling Agent 构建的生产级多智能体系统，支持自主规划、知识检索、工具调用与可观测性，演示 AI 如何真正落地到真实业务场景。
-- **English**: The production-level multi-agent system built with Spring Boot + Tool-Calling Agent supports autonomous planning, knowledge retrieval, tool calling, and observability, demonstrating how AI can truly be implemented in real business scenarios.
+一个在学生管理系统基础上构建的 Java 后端项目，不止于 CRUD，集成了 Spring Boot 生产级工程实践（JWT鉴权、Redis缓存、动态查询）和 LangChain4j Tool-Calling Agent，LLM 自主决策调用Tools。
 
 ## 🌐 公网地址
 
-> 纯后端 REST API，需通过 Postman 等工具调用。先 `POST /login` 获取 JWT token，再访问其他接口。
+> 纯后端 REST API，需通过 Postman 等工具调用。先 `POST /students/login` 获取 JWT token，再访问其他接口。
 
 > AI 接口依赖本地 Ollama，公网部署暂不包含 LLM 服务。
 - **Base URL**: https://campusai-production-093d.up.railway.app
@@ -19,9 +18,9 @@
 - [x] **Phase 0**：环境配置 + GitHub Actions CI ✅
 - [x] **Phase 1**：Spring Boot 骨架 + Docker + MySQL + Java 21 虚拟线程验证 ✅
 - [x] **Phase 2**：Tool-Calling Agent —— LangChain4j + Ollama + 4个业务Tool + 结构化输出 + 多轮记忆 ✅
-- [x] **Phase 3**：生产地基 —— DTO/VO分层 + 全局异常 + 参数校验 + 分页排序 + 事务进阶 + Redis缓存 + JWT鉴权 + Spring Security + CI/CD + 公网部署 ✅
+- [x] **Phase 3**：DTO/VO分层 + 全局异常 + 参数校验 + 分页排序 + 事务进阶 + Redis缓存 + JWT鉴权 + Spring Security + CI/CD + 公网部署 ✅
 - [ ] **Phase 4**：Multi-Agent + RAG —— Supervisor Agent + Specialist Agent + 向量检索 + Redis持久化记忆 🚧
-- [ ] **Phase 5**：核弹化 —— Prometheus + Grafana可观测性 + Resilience4j限流熔断 + 压测报告
+- [ ] **Phase 5**：Prometheus + Grafana可观测性 + Resilience4j限流熔断 + 压测报告
 
 ## 🛠️ 技术栈 (Tech Stack)
 
@@ -48,9 +47,9 @@
 
 **认证**
 
-| Method | URL      | 说明                        |
-| ------ | -------- | --------------------------- |
-| POST   | /login   | 登录，返回 JWT token        |
+| Method | URL             | 说明                        |
+| ------ |-----------------| --------------------------- |
+| POST   | /students/login | 登录，返回 JWT token        |
 
 **学生管理**
 

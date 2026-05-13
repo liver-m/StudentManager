@@ -18,6 +18,7 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
+    //获取所有课程信息（待优化：以后需要改为CourseVO）
     public Page<Course> getAllCourses(String courseName, Integer minCredit, Integer maxCredit, Pageable pageable){
         Specification<Course> spec = Specification
                 .where(CourseSpec.hasName(courseName))
@@ -25,4 +26,6 @@ public class CourseService {
                 .and(CourseSpec.maxCredit(maxCredit));
         return courseRepository.findAll(spec, pageable);
     }
+
+    
 }
