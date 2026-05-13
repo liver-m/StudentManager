@@ -56,11 +56,17 @@
 
 | Method | URL             | 说明         |
 | ------ | --------------- | ------------ |
-| GET    | /students       | 获取学生列表 |
+| GET    | /students       | 获取学生列表（支持姓名/班级/年龄/课程名动态筛选，分页排序） |
 | GET    | /students/{id}  | 获取单个学生 |
 | POST   | /students       | 添加学生     |
 | PUT    | /students/{id}  | 修改学生信息 |
 | DELETE | /students/{id}  | 删除学生     |
+
+**课程管理**
+
+| Method | URL             | 说明         |
+| ------ | --------------- | ------------   |
+| GET    | /courses        |获取课程列表（支持课程名/学分区间动态筛选）|
 
 **AI Agent**
 
